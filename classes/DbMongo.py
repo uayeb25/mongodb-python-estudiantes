@@ -1,11 +1,6 @@
 import pymongo
 
 class DbMongo:
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-        print("Objeto creado")
     
     @staticmethod
     def getDB():

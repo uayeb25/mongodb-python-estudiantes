@@ -3,16 +3,11 @@ import pymongo
 from classes import Estudiante, DbMongo
 
 def main():
-    
     db = DbMongo.getDB()
-    collection = db['estudiante']
-
-    estudiante = Estudiante("Uayeb 2","Caballero","31487539")
-    print(estudiante.__dict__)
-    collection.insert_one( estudiante.__dict__ )
-
-
-
+    estudiante = Estudiante("Uayeb 3","Caballero","31487539")
+    estudiante.save(db)
+    
+    
 if __name__ == "__main__":
     main()
 
