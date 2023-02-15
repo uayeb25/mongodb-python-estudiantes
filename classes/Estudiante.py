@@ -1,4 +1,4 @@
-from classes import DbMongo
+from classes.DbMongo import DbMongo
 class Estudiante:
 
     def __init__(self, nombre, apellido, telefono):
@@ -7,6 +7,8 @@ class Estudiante:
         self.telefono = telefono
         self.__collection = "estudiante"
 
-    def save(self, db):
+    def save(self):
+        client, db = DbMongo.getDB()
         collection = db[self.__collection]
         collection.insert_one(self.__dict__)
+        client.close()
