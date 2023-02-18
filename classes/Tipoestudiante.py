@@ -1,13 +1,10 @@
 from classes.DbMongo import DbMongo
-class Estudiante:
+class Tipoestudiante:
 
-    def __init__(self, nombre, apellido, telefono, tipo_estudiante ,id = ""):
-        self.nombre = nombre
-        self.apellido = apellido
-        self.telefono = telefono
-        self.tipo_estudiante = tipo_estudiante
+    def __init__(self, tipo, id = ""):
+        self.tipo = tipo
         self.__id = id
-        self.__collection = "estudiante"
+        self.__collection = "tipo_estudiante"
 
     def save(self, db):
         collection = db[self.__collection]
@@ -27,24 +24,33 @@ class Estudiante:
 
     @staticmethod
     def get_list(db):
-        collection = db["estudiante"]
-        estudiantes = collection.find()
+        collection = db["tipo_estudiante"]
+        tipos = collection.find()
 
-        list_estudiantes = []
-        for e in estudiantes:
-            temp_estudiante = Estudiante(
-                e["nombre"]
-                , e["apellido"]
-                , e["telefono"]
+        list_tipo_estudiantes = []
+        for e in tipos:
+            temp_tipo = Tipoestudiante(
+                e["tipo"]
                 , e["_id"] 
             )
 
-            list_estudiantes.append(temp_estudiante)
-        return list_estudiantes
+            list_tipo_estudiantes.append(temp_tipo)
+        return list_tipo_estudiantes
+    
+    @staticmethod
+    def get_dict(db):
+        collection = db["tipo_estudiante"]
+        tipos = collection.find()
+
+        dict_tipo_estudiantes = {}
+        for e in tipos:
+            dict_tipo_estudiantes[e["tipo"]] = e["_id"] 
+
+        return dict_tipo_estudiantes
     
     @staticmethod
     def delete_all(db):
-        lista_e = Estudiante.get_list(db)
+        lista_e = Tipoestudiante.get_list(db)
         for e in lista_e:
             e.delete(db)
         
