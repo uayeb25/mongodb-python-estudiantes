@@ -18,6 +18,8 @@ class DbMongo:
             , cluster
             , query_string
         )
+
+        print(uri)
  
         client = pymongo.MongoClient(uri)
         db = client[os.environ['DB']]
