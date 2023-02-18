@@ -23,6 +23,15 @@ class Tipoestudiante:
         collection.delete_one( filterToUse )
 
     @staticmethod
+    def get_one(db, id):
+        collection = db["tipo_estudiante"]
+        filterToUse = { '_id' : id }
+        result = collection.find_one(filterToUse)
+
+        return Tipoestudiante( result["tipo"] , result["_id"] )
+
+
+    @staticmethod
     def get_list(db):
         collection = db["tipo_estudiante"]
         tipos = collection.find()

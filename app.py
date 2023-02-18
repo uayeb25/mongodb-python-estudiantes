@@ -20,11 +20,19 @@ def main():
 
     print(dictTipos)
 
-    estudiante = Estudiante("Uayeb 3"
-                            ,"Caballero"
-                            ,"31487539"
-                            , dictTipos["Primaria"])
-    estudiante.save(db)
+    Estudiante("Uayeb"
+                ,"Caballero"
+                ,"31487539"
+                , dictTipos["Primaria"]).save(db)
+    
+    Estudiante("Imix"
+                ,"Caballero"
+                ,"31487539"
+                , dictTipos["Superior"]).save(db)
+
+
+    Estudiante.print_full_report_long_path(db)
+    Estudiante.print_full_report_short_path(db)
 
     client.close()
     
